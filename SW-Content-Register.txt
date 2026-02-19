@@ -1,5 +1,5 @@
 Release Name:           dm-mcxn947-click-shield-ping-pong-game
-Release Version:        1.0
+Release Version:        2.0
 Outgoing License:       LA_OPT_Online Code Hosting NXP_Software_License - v1.4 May 2025 
 licence in files:       Licence.txt
 Description:            Interactive ping pong game using MCXN947 MCU, OLED display, and dual joystick Click Boards, 

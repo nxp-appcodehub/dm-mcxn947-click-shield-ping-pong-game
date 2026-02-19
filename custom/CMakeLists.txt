@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.13)
+
+file(GLOB_RECURSE CUSTOM_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}*.c
+)
+
+

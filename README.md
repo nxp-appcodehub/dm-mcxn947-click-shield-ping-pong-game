@@ -4,13 +4,16 @@
 ## Interactive Ping Pong Game Demo Using the MCXN947 Click Shield with OLED C Display and Dual Joystick Click Boards
 
 
-This application showcases the MCXN947 MCU integrated with the MikroE Click Shield, featuring three Click Board slots. The demo utilizes an OLED C Click display and two Joystick Click Boards, with MCXN947 pins configured to route signals precisely to each slot. The final implementation delivers an interactive ping pong game, where players control paddles using the joysticks and view gameplay on the OLED screen. This project highlights the MCXN947’s flexibility in handling multiple peripherals and provides a fun, hands-on example of embedded graphics and input handling using NXP’s development ecosystem.
+This application showcases the MCXN947 MCU integrated with the MikroE Click Shield, featuring three Click Board slots. The demo utilizes an OLED C Click display and two Joystick Click Boards
+with MCXN947 pins configured to route signals precisely to each slot. The final implementation delivers an interactive ping pong game, where players control paddles using the joysticks and view
+gameplay on the OLED screen. This project highlights the MCXN947’s flexibility in handling multiple peripherals and provides a fun, hands-on example of embedded graphics and input handling
+using NXP’s development ecosystem.
 
 
 #### Boards: FRDM-MCXN947
 #### Categories: Graphics
 #### Peripherals: GPIO, I2C, SPI
-#### Toolchains: MCUXpresso IDE
+#### Toolchains: MCUXpresso IDE, VSCODE
 
 ## Table of Contents
 1. [Software](#step1)
@@ -22,9 +25,9 @@ This application showcases the MCXN947 MCU integrated with the MikroE Click Shie
 7. [Release Notes](#step7)
 
 ## 1. Software<a name="step1"></a>
-- [MCUXpresso 11.10.0 or newer.](https://nxp.com/mcuxpresso)
-- [MCUXpresso for VScode 24.8.9 or newer](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc800-arm-cortex-m0-plus-/mcuxpresso-for-visual-studio-code:MCUXPRESSO-VSC?cid=wechat_iot_303216)
-- [SDK for FRDM board](https://mcuxpresso.nxp.com/en/select)
+- [VSCode (1.107.0)](https://code.visualstudio.com/)
+- [MCUXpresso for VSCode extension (25.11.16)](https://marketplace.visualstudio.com/items?itemName=NXPSemiconductors.mcuxpresso)
+- [SDK version 25.12.0](https://github.com/nxp-mcuxpresso/mcuxsdk-core)
 
 ## 2. Hardware<a name="step2"></a>
 - [FRDM MCXN947](https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-MCXN947) 
@@ -44,51 +47,48 @@ It is needed to change de address selector of the joystick in the slot 1, change
 
 [<p align="center"><img src="Images/setup.png" width="200"/></p>](Images/setup.png)
 
+### 3.1 Prepare before import code
+1. [Install VSCode.](https://www.nxp.com/design/design-center/training/TIP-GETTING-STARTED-WITH-MCUXPRESSO-FOR-VS-CODE)
+2. [Install MCUXpresso for VSCode extension.](https://www.nxp.com/design/design-center/training/TIP-GETTING-STARTED-WITH-MCUXPRESSO-FOR-VS-CODE)
+3. [Import SDK repository (Import could be take about an hour).](https://www.nxp.com/design/design-center/training/TIP-GETTING-STARTED-WITH-MCUXPRESSO-FOR-VS-CODE)
+    - Open MCUXpresso for VSCode extension.
+    - In Quick Start Panel window click in Import Repository.
+    - Select MCUXpresso SDK repository.
+    - Select main revision or specific if is needed.
+    - Select save location.
+    - Click import.
+    - Import could be take about an hour.
 
-### 3.1 Import Project
+### 3.2 Import example from Application Code Hub
+1. Open MCUXpresso for VSCode extension.
+2. In Quick Start Panel window click in Application Code Hub.
+3. In Search text field, type the name of desired example.
+4. Select example, put some name for save the example, and the directory where the example will be saved.
+5. Click in Import Project and wait few seconds.
 
-select "File" in window bar, and then select "Import"
-[<p align="center"><img src="Images/File_Import.png" width="400"/></p>](Images/File_Import.png)
+### 3.3 Flash the FRDM Application
+1. Connect FRDM-MCXN947 to computer with USB-C cable in J17.
+2. Open MCUXpresso extension in VSCode.
+3. Select the project.
+4. Expand project and expand "Project Files" option
+5. Open CMakePresets.json
+6. Open Windows File Explorer and go to path, see your version of ".venv_3_13"
+```
+C:/Users/%YourUserName%/.mcuxpressotools/
+```
+7. Replace version in CMakePresets.json in section of "configurePresets" -> "cacheVariables" -> "Python3_EXECUTABLE"
+```
+        "Python3_EXECUTABLE": {
+          "type": "FILEPATH",
+          "value": "$env{ARMGCC_DIR}/../.venv_3_13/Scripts/python.exe"
+        }
+```
+8. Do right click on project and select pristine build and wait about a one minute.
+9. Click run (play icon).
+10. Please wait a few seconds.
+11. Now click stop in center upper button.
+12. Disconnect and conect USB-C cable of the board
 
-select Application Code Hub and then click "Next"
-[<p align="center"><img src="Images/ACH.png" width="400"/></p>](Common/Images/ACH.png)
-
-find the Demo "click shield for MCXN947"
-[<p align="center"><img src="Images/Find_Demo.png" width="400"/></p>](Images/Find_Demo.png)
-
-select the Demo and then click "GitHub link"
-[<p align="center"><img src="Images/Github_Link.png" width="400"/></p>](Images/Github_Link.png)
-
-now click "Next"
-[<p align="center"><img src="Images/Github_Next.png" width="400"/></p>](Images/Github_Next.png)
-
-select main branch
-[<p align="center"><img src="Images/main.png" width="400"/></p>](Images/main.png)
-
-select your directory path and click "Next"
-[<p align="center"><img src="Images/Local_Destination.png" width="400"/></p>](Images/Local_Destination.png)
-
-select "Import existing Eclipse projects" and click "Next"
-[<p align="center"><img src="Images/wizard.png" width="400"/></p>](Images/wizard.png)
-
-import the projects you want and click "Finish"
-[<p align="center"><img src="Images/Import_Projects.png" width="400"/></p>](Images/Import_Projects.png)
-
-### 3.2 Run Project
-Once the project is imported select the project folder and expand the hammer button
-[<p align="center"><img src="Images/project_folder.png" width="400"/></p>](Images/project_folder.png)
-
-select your build "debug" or "release"
-[<p align="center"><img src="Images/debug_release.png" width="400"/></p>](Images/debug_release.png)
-
-once the project is built select the bug to start the debug process
-[<p align="center"><img src="Images/bug.png" width="400"/></p>](Images/bug.png)
-
-select your board and click "OK"
-[<p align="center"><img src="Images/select_board.png" width="400"/></p>](Images/select_board.png)
-
-finally run the project
-[<p align="center"><img src="Images/run.png" width="400"/></p>](Images/run.png)
 
 ## 4. Results<a name="step4"></a>
 [<p align="center"><img src="Images/video_ping_pong.webp" width="300"/></p>](Images/video_ping_pong.webp)
@@ -109,6 +109,7 @@ finally run the project
 
 <!----- Toolchains ----->
 [![Toolchain badge](https://img.shields.io/badge/Toolchain-MCUXPRESSO%20IDE-orange)](https://mcuxpresso.nxp.com/appcodehub?toolchain=mcux)
+[![Toolchain badge](https://img.shields.io/badge/Toolchain-VS%20CODE-orange)](https://mcuxpresso.nxp.com/appcodehub?toolchain=vscode)
 
 Questions regarding the content/correctness of this example can be entered as Issues within this GitHub repository.
 
@@ -122,4 +123,4 @@ Questions regarding the content/correctness of this example can be entered as Is
 ## 7. Release Notes<a name="step7"></a>
 | Version | Description / Update                           | Date                        |
 |:-------:|------------------------------------------------|----------------------------:|
-| 1.0     | Initial release on Application Code Hub        | August 29<sup>th</sup> 2025 |
+| 1.0     | Initial release on Application Code Hub        | February 28<sup>th</sup> 2026 |

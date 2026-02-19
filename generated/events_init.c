@@ -11,7 +11,7 @@
  *      INCLUDES
  *********************/
 #include <stdio.h>
-#include "lvgl/lvgl.h"
+#include "../modules/lvgl/lvgl/lvgl.h"
 #include "events_init.h"
 
 /*********************

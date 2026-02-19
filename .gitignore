@@ -1,2 +1,10 @@
-**/.settings
-
+/Debug
+/debug
+/Release
+/release
+*.launch
+*.jlink
+/__repo__
+/.vscode/c_cpp_properties.json
+/.vscode/tasks.json
+mcux_include.json
